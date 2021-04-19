@@ -1,4 +1,5 @@
-{% import 'macros.html' as macro%}
+
+{% extends 'bootstrap/base.html'%}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,10 +15,11 @@
         {% endif %}
 </head>
 <body>
+    {% include 'navbar.html' %}
      <!-- Content block -->
 
      {% block content %}
-
+        
      {% endblock%}
 </body>
 </html>
