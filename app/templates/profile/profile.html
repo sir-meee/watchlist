@@ -1,41 +1,80 @@
 {% extends 'base.html'%}
 
 {% block content %}
-<div class="container">
-<div class="row">
-<!-- displaying  Username-->
-  <div class="col-md-4">
-    <h3> {{user.username| capitalize}} </h3>
+<section class="section details">
+  <!-- details background -->
+  <div class="details__bg" data-bg="img/home/home__bg.jpg"></div>
+  <!-- end details background -->
 
-    <!--Displaying user bio-->
-    {% if user.bio %}
-      <p> {{user.bio}}</p>
-    {%else%}
-      <p> {{user.username| capitalize}} has no bio </p>
-    {% endif %}
+  <!-- details content -->
+  <div class="container">
+      <div class="row">
+          <!-- title -->
+          <div class="col-12">
+              <h1 class="details__title">{{user.username| capitalize}}</h1>
+          </div>
+          <!-- end title -->
 
-    {% if user == current_user %}
-        <a href="{{url_for('main.update_profile',uname=user.username)}}">Edit profile</a>
-    {% endif %}
+          <!-- content -->
+          <div class="col-10">
+              <div class="card card--details card--series">
+                  <div class="row">
+                      <!-- card cover -->
+                      <div class="col-12 col-sm-4 col-md-4 col-lg-3 col-xl-3">
+                          <div class="card__cover">
+                            {% if user.profile_pic_path %}
+                              <img src="{{url_for('static',filename=user.profile_pic_path)}}" alt="">
+                            {% else %}
+                            <p class="reviews__text">No profile picture</p>
+                            {% endif %}
+                          </div>
+                      </div>
+                      <!-- end card cover -->
+
+                      <!-- card content -->
+                      <div class="col-12 col-sm-8 col-md-8 col-lg-9 col-xl-9">
+                          <div class="card__content">
+                              <div class="card__description card__description--details">
+                                {% if user.bio %}
+                                 {{user.bio}}
+                                {%else%}
+                                 {{user.username| capitalize}} has no bio 
+                                {% endif %}
+                              </div>
+                          </div>
+                      </div>
+                      <!-- end card content -->
+                  </div>
+              </div>
+          </div>
+          <!-- end content -->
+
+          <div class="col-12">
+              <div class="details__wrap">
+                  <div class="details__devices">
+                      {% if user == current_user %}
+                      <h2 class="details__devices-title">Update Profile Picture:</h2>
+                      <form  action="{{url_for('main.update_pic',uname=user.username)}}" method="post" enctype = "multipart/form-data" class="form">
+                        <input type="file"  name="photo" class="form-control reviews__text" required>
+                        <input type="submit" class="form__btn">
+                      </form>
+                      {% endif %}
+                  </div> 
+
+                  <div class="details__share">
+                      <span class="details__share-title">
+                        {% if user == current_user %}
+                        <a href="{{url_for('main.update_profile',uname=user.username)}}" class="form__btn">
+                        Edit profile
+                        </a>
+                        {% endif %}
+                      </span>
+                  </div> 
+                  <!-- end share -->
+              </div>
+          </div>
+      </div>
   </div>
-
-  <!--Display profile photo-->
-  <div class="col-md-4">
-
-    {% if user.profile_pic_path %}
-    <img src="{{url_for('static',filename=user.profile_pic_path)}}" alt="" class="img-thumbnail">
-    {%else%}
-    <p>No profile picture</p>
-    {% endif %}
-    
-    {% if user == current_user %}
-    <form  action="{{url_for('main.update_pic',uname=user.username)}}" method="post" enctype = "multipart/form-data">
-
-      <input type="file"  name="photo" class="form-control" required>
-      <input type="submit">
-    </form>
-      {% endif %}
-  </div>
-</div>
-</div>
+  <!-- end details content -->
+</section>
 {% endblock %}

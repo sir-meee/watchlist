@@ -2,7 +2,19 @@
 {% import 'bootstrap/wtf.html' as wtf %}
 
 {% block content %}
-<div class="container">
-  {{wtf.quick_form(form)}}
-</div>
+<section class="section details">
+  <div class="container reviews__text">
+    {{wtf.quick_form(form)}}
+  </div>
+</section>
 {% endblock %}
+
+<form action="#" class="form">
+  <input type="text" class="form__input" placeholder="Title">
+  <textarea class="form__textarea" placeholder="Review"></textarea>
+  <div class="form__slider">
+      <div class="form__slider-rating" id="slider__rating"></div>
+      <div class="form__slider-value" id="form__slider-value"></div>
+  </div>
+  <button type="button" class="form__btn">Send</button>
+</form>

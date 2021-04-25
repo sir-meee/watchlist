@@ -45,8 +45,9 @@ def movie(id):
     movie = get_movie(id)
     title = f'{movie.title}'
     reviews = Review.get_reviews(movie.id)
+    popular_movies = get_movies('popular')
 
-    return render_template('movie.html',title = title,movie = movie,reviews = reviews)
+    return render_template('movie.html',title = title,movie = movie,reviews = reviews, popular = popular_movies)
 
 @main.route('/search/<movie_name>')
 def search(movie_name):
