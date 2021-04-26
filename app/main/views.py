@@ -43,7 +43,6 @@ def movie(id):
     View movie page function that returns the movie details page and its data
     '''
     
-    title = f'{movie.title} review'
     movie = get_movie(id)
     title = f'{movie.title}'
     reviews = Review.get_reviews(movie.id)
@@ -155,7 +154,7 @@ def movie_reviews(id):
     reviews = Review.get_reviews(id)
     title = f'All reviews for {movie.title}'
     return render_template('movie_reviews.html',title = title,reviews=reviews)
-    
+
 @main.route('/review/<int:id>')
 def single_review(id):
     review=Review.query.get(id)
