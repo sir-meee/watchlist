@@ -2,17 +2,47 @@
 {% import 'macros.html' as macro%}
 
 {% block content %}
+<section class="section details section--bg" data-bg="img/section/section.jpg">
     <div class="container">
-
         <div class="row">
+            <!-- section title -->
+            <div class="col-12">
+                <h2 class="section__title">Found {{ movies| count }} matches</h2>
+            </div>
+            <!-- end section title -->
 
-            <h3> Found {{ movies| count }} matches </h3>
-            <hr>
-            <ul>
-                {{ macro.displayMovieList(movies)}}
-            </ul>
+            <!-- card -->
+            {% for searched_movie in movies %}
+            <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
+                <div class="card">
+                    <div class="card__cover">
+                        <img src="{{ searched_movie.poster }}" alt="">
+                        <a href="/movie/{{searched_movie.id}}" class="card__play">
+                            <i class="icon ion-ios-play"></i>
+                        </a>
+                    </div>
+                    <div class="card__content">
+                        <h3 class="card__title"><a href="/movie/{{searched_movie.id}}">{{ searched_movie.title }}</a></h3>
+                        <!-- <span class="card__category">
+                            <a href="#">Action</a>
+                            <a href="#">Triler</a>
+                        </span> -->
+                        <span class="card__rate"><i class="icon ion-ios-star"></i>
+                            <b> {{ searched_movie.vote_average }}</b> - <i>{{ searched_movie.vote_count}} votes </i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            <!-- end card -->
 
+            <!-- section btn -->
+            <!-- <div class="col-12">
+                <a href="#" class="section__btn">Show more</a>
+            </div> -->
+            <!-- end section btn -->
         </div>
-
     </div>
+</section>
 {% endblock %}
+
