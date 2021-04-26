@@ -514,21 +514,19 @@
                             <div class="col-12">
                                 <div class="reviews">
                                     <ul class="reviews__list">
-                                        {% if reviews %}
-                                        {% for review in review_list %}
+                                        
                                         <li class="reviews__item">
                                             <div class="reviews__autor">
                                                 <img class="reviews__avatar" src="" alt="">
                                                 <span class="reviews__name"></span>
-                                                <span class="reviews__time">{{ datetime }} by {{review.user.username}}</span>
+                                                <span class="reviews__time"></span>
 
-                                                <span class="reviews__rating"><i class="icon ion-ios-star"></i>8.4</span>
+                                                <span class="reviews__rating"><i class="icon ion-ios-star"></i></span>
                                             </div>
                                             <p class="reviews__text"></p>
                                         </li>
-                                        {% endfor %}
-                                        {% else %}
-                                        <h3 class="reviews__text">This movie has no reviews </h3>
+                                      
+                                        <h3 class="reviews__text"></h3>
                                         {% endif %}
                                     </ul>
 
