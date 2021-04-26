@@ -52,7 +52,7 @@ def movie(id):
     if search_movie:
         return redirect(url_for('.search',movie_name=search_movie))
     else:
-        return render_template('movie.html',title = title,movie = movie,reviews = reviews, popular = popular_movies, review_form=form)
+        return render_template('movie.html',title = title,movie = movie,reviews = reviews, popular = popular_movies)
 
 @main.route('/search/<movie_name>')
 def search(movie_name):
